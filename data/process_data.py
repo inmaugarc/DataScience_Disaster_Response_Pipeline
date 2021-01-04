@@ -1,17 +1,3 @@
-"""
-This script loads 3 files:
-    - the messages file in a csv format
-    - the categories file in a csv format
-    - the db file
-Then it cleans and prepares data for the next phases of this project
-And it saves the cleaned data on a SQLite destination database
-
-Script execution syntax:
-    python process_data.py <path_to_messages_file.csv> <path_to_categories_file.csv> <path_to_SQLite_response_database.db>
-Sample script execution:
-    python process_data.py disaster_messages.csv disaster_categories.csv disaster_response.db
-
-"""
 # Import the libraries we are going to use
 import sys
 import pandas as pd
@@ -87,15 +73,25 @@ def save_data(df, database_filename):
 
 def main():
         """
-        Main function that runs all data processing, that is:
-        1. Load messages and categories files
-        2. Clean data
-        3. Save data into a SQLite Database
-
         Args:
-            pandas-dataframe file: it contains the already cleaned data
-            database-filename: path to the database file where we will save data
+            messages_file: file that contains the disaster messages
+            categories_file: file that contains the category of disaster messages
+            database_file: path to the database file where clean data will be saved
         Returns:
+        """
+        """
+        This main funtion runs all data processing, that is, loads 3 files:
+            - the messages file in a csv format
+            - the categories file in a csv format
+            - the db file
+        Then it cleans and prepares data for the next phases of this project
+        And it saves the cleaned data on a SQLite destination database
+
+        Script execution syntax:
+            python process_data.py <path_to_messages_file.csv> <path_to_categories_file.csv> <path_to_SQLite_response_database.db>
+        Sample script execution:
+            python process_data.py disaster_messages.csv disaster_categories.csv disaster_response.db
+
         """
 
     if len(sys.argv) == 4:
