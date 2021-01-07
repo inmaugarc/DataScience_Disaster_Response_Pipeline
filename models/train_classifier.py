@@ -98,8 +98,27 @@ def build_model():
     ])
     return (pipeline)
 
+def display_results(y, y_test, y_pred):
+    """
+    Display results procedure:
 
-def display_results(y_test, y_pred):
+    This procedure displays some metrics of the Machine Learning model
+
+    Args: y, y_test and y_pred
+
+    Returns:
+        nothing, it displays some metrics like the Classification report and accuracy
+    """
+
+    category_names = list(y.columns)
+
+    for i in range(len(category_names)):
+        print("Output Category:", category_names[i],"\n", classification_report(y_test.iloc[:, i].values, y_pred[:, i]))
+        print('Accuracy of %25s: %.2f' %(category_names[i], accuracy_score(y_test.iloc[:, i].values, y_pred[:,i])))
+
+
+
+def old_display_results(y_test, y_pred):
     """
     Display results procedure:
 
@@ -134,13 +153,13 @@ def evaluate_model(model, X, y):
 
     X_train, X_test, y_train, y_test = train_test_split(X, y)
 
-    pipeline = build_model()
     # train classifier
+    pipeline = build_model()
     pipeline.fit(X_train, y_train)
     # predict on test set data
     y_pred = pipeline.predict(X_test)
     # display metrics
-    display_results(y_test, y_pred)
+    display_results(y, y_test, y_pred)
 
 
 def save_model(model, model_filepath):
@@ -164,7 +183,8 @@ def main():
     if len(sys.argv) == 3:
         database_filepath, model_filepath = sys.argv[1:]
         print('Loading data...\n    DATABASE: {}'.format(database_filepath))
-        X, Y, category_names = load_data(database_filepath)
+        #X, Y, category_names = load_data(database_filepath)
+        X,Y = load_data(database_filepath)
         X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2)
 
         print('Building model...')
@@ -174,7 +194,8 @@ def main():
         model.fit(X_train, Y_train)
 
         print('Evaluating model...')
-        evaluate_model(model, X_test, Y_test, category_names)
+       # evaluate_model(model, X_test, Y_test, category_names)
+        evaluate_model(model, X_test, Y_test)
 
         print('Saving model...\n    MODEL: {}'.format(model_filepath))
         save_model(model, model_filepath)
