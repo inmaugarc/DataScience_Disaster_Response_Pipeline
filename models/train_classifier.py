@@ -139,7 +139,7 @@ def evaluate_model(model, X, y):
     # predict on test set data
     y_pred = pipeline.predict(X_test)
     # display metrics
-    display_results(y_test, y_pred):
+    display_results(y_test, y_pred)
 
 
 def save_model(model, model_filepath):
