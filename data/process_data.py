@@ -21,12 +21,12 @@ def load_data(messages_filepath, categories_filepath):
 
 
 def clean_data(df):
-        """
-        This script cleans data
-        Args:
-            pandas-dataframe file: it contains the data to clean
-        Returns: a dataframe file with clean data
-        """
+    """
+    This script cleans data
+    Args:
+        pandas-dataframe file: it contains the data to clean
+    Returns: a dataframe file with clean data
+    """
     # Let's split the categories into separated columns
     # create a dataframe of the 36 individual category columns
     categories = df['categories'].str.split(pat=";",expand=True)
@@ -67,7 +67,7 @@ def save_data(df, database_filename):
         Returns: ?
         """
         # save the clean dataset into an sqlite database
-        engine = create_engine('sqlite:///'+ database_filename')
+        engine = create_engine('sqlite:///'+ database_filename)
         df.to_sql('InsertTableName', engine, index=False)
 
 
