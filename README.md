@@ -33,7 +33,7 @@ In a Python script: train_classifier.py, there is a machine learning pipeline th
     There is a flask web app to show some nice visualization using Plotly.
 
 Here's the file structure of the project:
-
+![Alt text](./img/tree_Disaster.png?raw=true "Structure Project")
 
 
 ### Instructions:
@@ -48,3 +48,13 @@ Here's the file structure of the project:
     `python run.py`
 
 3. Find the workspace environmental variables with env | grep WORK, and you can open a new browser window and go to the address: http://WORKSPACESPACEID-3001.WORKSPACEDOMAIN replacing WORKSPACEID and WORKSPACEDOMAIN with your values.
+
+
+## Licensing, Authors, Acknowledgements<a name="licensing"></a>
+
+Must give credit to Figure Eight for collecting data and to Udacity because there are some pieces of code taken out from the DataScience Udacity Nanodegree classrooms.
+Otherwise, feel free to use the code here as you would like!
+
+## References <a name="references"></a>
+ [StackOverflow 2020 Survey]([Figure Eight](https://www.figure-eight.com/) <br>
+ [Data Science Udacity Nanodegrees](https://www.udacity.com/school-of-data-science) <br>
