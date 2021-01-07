@@ -47,4 +47,4 @@ Here's the file structure of the project:
 2. Run the following command in the app's directory to run your web app.
     `python run.py`
 
-3. Go to http://0.0.0.0:3001/
+3. Find the workspace environmental variables with env | grep WORK, and you can open a new browser window and go to the address: http://WORKSPACESPACEID-3001.WORKSPACEDOMAIN replacing WORKSPACEID and WORKSPACEDOMAIN with your values.
