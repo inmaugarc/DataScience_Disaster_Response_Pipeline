@@ -70,5 +70,5 @@ Must give credit to Figure Eight for collecting data and to Udacity because ther
 Otherwise, feel free to use the code here as you would like!
 
 ## References <a name="references"></a>
- [Figure Eight]([Figure Eight](https://www.figure-eight.com/) <br>
+ [Figure Eight](Figure Eight](https://www.figure-eight.com/) <br>
  [Data Science Udacity Nanodegrees](https://www.udacity.com/school-of-data-science) <br>
