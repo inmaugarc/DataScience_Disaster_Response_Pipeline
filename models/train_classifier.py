@@ -7,10 +7,10 @@ import pandas as pd
 from sqlalchemy import create_engine
 # import nltk and text processing (like regular expresion) libraries
 import nltk
-nltk.download(['punkt', 'wordnet','stopwords'])
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem.wordnet import WordNetLemmatizer
+nltk.download(['punkt', 'wordnet','stopwords'])
 import re
 
 # import libraries for transformation
