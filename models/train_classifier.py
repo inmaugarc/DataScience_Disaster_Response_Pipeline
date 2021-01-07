@@ -33,9 +33,6 @@ from sklearn.pipeline import Pipeline
 from sklearn.metrics import confusion_matrix, classification_report, accuracy_score, fbeta_score, make_scorer
 from sklearn.model_selection import train_test_split,GridSearchCV
 from sklearn.ensemble import RandomForestClassifier
-#stop_words = stopwords.words("english")
-#lemmatizer = WordNetLemmatizer()
-
 
 def load_data(db_file):
     """
@@ -95,12 +92,38 @@ def build_model():
     """
     Build model procedure:
 
+    This procedure builds a Machine Learning model based on a sklearn pipeline
+
+    Args: no args
+
+    Returns:
+    model (Scikit Pipeline Object and RandomForest Classifier) : ML Model
+    """
+
+    base = Pipeline([
+        ('vect', CountVectorizer(tokenizer=tokenize)),
+        ('tfidf', TfidfTransformer()),
+        ('clf', MultiOutputClassifier(
+            RandomForestClassifier(class_weight='balanced',
+                                   n_estimators=20,
+                                   max_features=None)))])
+
+   # parameters = {'rfclf__estimator__max_features':['auto', None]}
+
+   # model = GridSearchCV(base, parameters, scoring='f1_weighted', cv=2)
+    return (base)
+
+
+def old_build_model():
+    """
+    Build model procedure:
+
     This procedure builds the Machine Learning model
 
     Args: no args
 
     Returns:
-    model (Scikit Pipelin Object and RandomForest Classifier) : ML Model
+    model (Scikit Pipeline Object and RandomForest Classifier) : ML Model
     """
 
     pipeline = Pipeline([
@@ -121,6 +144,9 @@ def display_results(y, y_test, y_pred):
     Returns:
         nothing, it displays some metrics like the Classification report and accuracy
     """
+
+    accuracy = (y_pred == y_test).mean()
+    print("Accuracy:", accuracy, "\n")
 
     category_names = list(y.columns)
 
