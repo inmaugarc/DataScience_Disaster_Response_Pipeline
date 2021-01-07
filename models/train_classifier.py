@@ -134,6 +134,7 @@ def evaluate_model(model, X, y):
 
     X_train, X_test, y_train, y_test = train_test_split(X, y)
 
+    pipeline = build_model()
     # train classifier
     pipeline.fit(X_train, y_train)
     # predict on test set data
