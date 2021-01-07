@@ -145,8 +145,8 @@ def display_results(y, y_test, y_pred):
         nothing, it displays some metrics like the Classification report and accuracy
     """
 
-    accuracy = (y_pred == y_test).mean()
-    print("Accuracy:", accuracy, "\n")
+    #accuracy = (y_pred == y_test).mean()
+    #print("Accuracy:", accuracy, "\n")
 
     category_names = list(y.columns)
 
