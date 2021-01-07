@@ -3,7 +3,7 @@ This script:
 1. Loads data from a SQLite database
 2. Splits the dataset into training and test sets
 3. Builds a text processing & a machine learning pipeline
-4. Trains and tunes a model using the GridSearchCV method
+4. Trains and tunes a model (optimizing the hyperparameters) using the GridSearchCV method
 5. Outputs results on the test set
 6. Exports the final model as a pickle file
 """
