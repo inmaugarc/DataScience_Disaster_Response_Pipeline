@@ -46,10 +46,13 @@ def index():
     top_10_mes = df.iloc[:,4:].sum().sort_values(ascending=False)[0:10]
     top_10_mes_names = list(top_10_mes.index)
 
+    mes_categories = df.columns[4:-1]
+    mes_categories_count = df[mes_categories].sum()
+
     # create visuals
     # TODO: Below is an example - modify to create your own visuals
     graphs = [
-        {
+          {
             'data': [
                 Bar(
                     x=genre_names,
@@ -66,13 +69,35 @@ def index():
                     'title': "Genre"
                 }
             }
-        }
+        },
+
+         {
+           'data': [
+                Bar(
+                    x=mes_categories,
+                    y=mes_categories_count,
+                    marker=dict(color='green')
+                )
+            ],
+
+            'layout': {
+                'title': 'Distribution of Message Categories',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Category",
+                    'tickangle':"-50"
+                }
+            }
+        },
 
         {
             'data': [
                 Bar(
                     x=top_10_mes_names,
-                    y=top_10_mes
+                    y=top_10_mes,
+                    marker=dict(color='red')
                 )
             ],
 
@@ -86,9 +111,6 @@ def index():
                 }
             }
         }
-
-
-
 
     ]
 
