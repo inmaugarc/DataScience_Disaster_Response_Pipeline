@@ -2,7 +2,7 @@
 # Build a Machine Learning Pipeline to categorize emergency messages
 A Udacity Data Scientist Nanodegree Project
 
-![Alt text](./img/Screenshot_ Disasters.png?raw=true "Message Classifier")
+![Alt text](./img/Screenshot_Disasters.png?raw=true "Message Classifier")
 
 ### Table of Contents
 
