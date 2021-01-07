@@ -72,15 +72,12 @@ def tokenize(text):
     """
     # normalize case and remove punctuation
     text = re.sub(r"[^a-zA-Z0-9]", " ", text.lower())
-
     # tokenize text
     tokens = word_tokenize(text)
-
     # lemmatize andremove stop words
     tokens = [lemmatizer.lemmatize(word) for word in tokens if word not in stop_words]
 
     return tokens
-
 
 def build_model():
     """
@@ -187,7 +184,7 @@ def main():
         print('Please provide the filepath of the disaster messages database '\
               'as the first argument and the filepath of the pickle file to '\
               'save the model to as the second argument. \n\nExample: python '\
-              'train_classifier.py ../data/DisasterResponse.db classifier.pkl')
+              'train_classifier.py data/DisasterResponse.db models/classifier.pkl')
 
 
 if __name__ == '__main__':
