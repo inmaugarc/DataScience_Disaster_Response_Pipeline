@@ -7,7 +7,7 @@ from nltk.tokenize import word_tokenize
 
 from flask import Flask
 from flask import render_template, request, jsonify
-from plotly.graph_objs import Bar
+from plotly.graph_objs import Bar, Scatter, Pie
 from sklearn.externals import joblib
 from sqlalchemy import create_engine
 
@@ -57,28 +57,25 @@ def index():
     distr_class_0 = 1 - distr_class_1
     distr_class_names = list(distr_class_1.index)
 
+
     # create visuals
     # TODO: Below is an example - modify to create your own visuals
     graphs = [
-          {
+       {
             'data': [
-                Bar(
-                    x=genre_names,
-                    y=genre_counts
-                )
+                Pie(
+                    labels=genre_names,
+                    values=genre_counts)
+
             ],
 
             'layout': {
-                'title': 'Distribution of Message Genres',
-                'yaxis': {
-                    'title': "Count"
-                },
-                'xaxis': {
-                    'title': "Genre"
-                }
-            }
-        },
-                {
+                'title': 'Distribution of Message Genres'
+             }
+
+       },
+
+       {
             'data': [
                 Bar(
                     x=distr_class_names,
@@ -91,6 +88,8 @@ def index():
                     y=distr_class_0,
                     name = 'Class = 0',
                     marker = dict(color = 'rgb(210, 220, 240)')
+
+
                 )
             ],
 
@@ -109,7 +108,7 @@ def index():
 
         {
             'data': [
-                Bar(
+                Scatter(
                     x=top_10_mes_names,
                     y=top_10_mes,
                     marker=dict(color='crimson')
@@ -148,6 +147,7 @@ def index():
                 }
             }
         }
+
     ]
 
     # encode plotly graphs in JSON

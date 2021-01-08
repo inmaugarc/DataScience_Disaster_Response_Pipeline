@@ -34,6 +34,7 @@ from sklearn.metrics import confusion_matrix, classification_report, accuracy_sc
 from sklearn.model_selection import train_test_split,GridSearchCV
 from sklearn.ensemble import RandomForestClassifier
 
+
 def load_data(db_file):
     """
     Load data function
@@ -93,6 +94,7 @@ def build_model():
     Build model procedure:
 
     This procedure builds a Machine Learning model based on a sklearn pipeline
+    and using tfidf, random forest, and gridsearch
 
     Args: no args
 
@@ -103,35 +105,18 @@ def build_model():
     base = Pipeline([
         ('vect', CountVectorizer(tokenizer=tokenize)),
         ('tfidf', TfidfTransformer()),
-        ('clf', MultiOutputClassifier(
-            RandomForestClassifier(class_weight='balanced',
-                                   n_estimators=20,
-                                   max_features=None)))])
+        ('clf', MultiOutputClassifier(RandomForestClassifier()))
+        ])
 
-   # parameters = {'rfclf__estimator__max_features':['auto', None]}
+    parameters = {'clf__estimator__n_estimators': [50, 100],
+                  'clf__estimator__min_samples_split': [2, 3, 4],
+                  'clf__estimator__criterion': ['entropy', 'gini']
+                 }
 
-   # model = GridSearchCV(base, parameters, scoring='f1_weighted', cv=2)
-    return (base)
+    model = GridSearchCV(base, param_grid=parameters, n_jobs=-1, cv=2, verbose=10)
 
+    return (model)
 
-def old_build_model():
-    """
-    Build model procedure:
-
-    This procedure builds the Machine Learning model
-
-    Args: no args
-
-    Returns:
-    model (Scikit Pipeline Object and RandomForest Classifier) : ML Model
-    """
-
-    pipeline = Pipeline([
-        ('vect', CountVectorizer(tokenizer=tokenize)),
-        ('tfidf', TfidfTransformer()),
-        ('clf', MultiOutputClassifier (RandomForestClassifier()))
-    ])
-    return (pipeline)
 
 def display_results(y, y_test, y_pred):
     """
@@ -145,39 +130,13 @@ def display_results(y, y_test, y_pred):
         nothing, it displays some metrics like the Classification report and accuracy
     """
 
-    #accuracy = (y_pred == y_test).mean()
-    #print("Accuracy:", accuracy, "\n")
-
     category_names = list(y.columns)
 
     for i in range(len(category_names)):
         print("Output Category:", category_names[i],"\n", classification_report(y_test.iloc[:, i].values, y_pred[:, i]))
         print('Accuracy of %25s: %.2f' %(category_names[i], accuracy_score(y_test.iloc[:, i].values, y_pred[:,i])))
 
-
-
-def old_display_results(y_test, y_pred):
-    """
-    Display results procedure:
-
-    This procedure displays some metrics of the Machine Learning model
-
-    Args: y_test and y_pred
-
-    Returns:
-        nothing, it displays some metrics like the Confussion Matrix and accuracy
-    """
-
-    labels = np.unique(y_pred)
-    confusion_mat = confusion_matrix(y_test, y_pred, labels=labels)
-    accuracy = (y_pred == y_test).mean()
-
-    print("Labels:", labels)
-    print("Confusion Matrix:\n", confusion_mat)
-    print("Accuracy:", accuracy)
-
-
-def evaluate_model(model, X, y):
+def evaluate_model(model, y, x_test, y_test):
     """
     Evaluate model procedure:
 
@@ -189,14 +148,12 @@ def evaluate_model(model, X, y):
         nothing, it runs the model and it displays accuracy metrics
     """
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y)
-
-    # train classifier
-    pipeline = build_model()
-    pipeline.fit(X_train, y_train)
     # predict on test set data
-    y_pred = pipeline.predict(X_test)
+    print ("Starting the prediction ...\n")
+    y_pred = model.predict(x_test)
+    print ("Finishing the prediction ...\n")
     # display metrics
+    print ("Starting displaying accuracy results ...\n")
     display_results(y, y_test, y_pred)
 
 
@@ -221,19 +178,18 @@ def main():
     if len(sys.argv) == 3:
         database_filepath, model_filepath = sys.argv[1:]
         print('Loading data...\n    DATABASE: {}'.format(database_filepath))
-        #X, Y, category_names = load_data(database_filepath)
-        X,Y = load_data(database_filepath)
-        X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2)
+
+        X,y = load_data(database_filepath)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
         print('Building model...')
         model = build_model()
 
         print('Training model...')
-        model.fit(X_train, Y_train)
+        model.fit(X_train, y_train)
 
         print('Evaluating model...')
-       # evaluate_model(model, X_test, Y_test, category_names)
-        evaluate_model(model, X_test, Y_test)
+        evaluate_model(model,y, X_test, y_test)
 
         print('Saving model...\n    MODEL: {}'.format(model_filepath))
         save_model(model, model_filepath)
