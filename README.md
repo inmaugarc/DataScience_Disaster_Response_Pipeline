@@ -64,7 +64,7 @@ In a Python script: train_classifier.py, there is a machine learning pipeline th
 
     There is a flask web app to show some nice visualization using Plotly.
 
-    ![Alt text](./img/Graphs2.png?raw=true "Nice Visualizations")
+    ![Alt text](./img/Graph3.png?raw=true "Nice Visualizations")
 
 ## Results<a name="results"></a>
 The main findings are explained on the Notebooks files that are included in the corresponding folder.
