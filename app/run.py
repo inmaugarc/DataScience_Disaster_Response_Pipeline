@@ -46,8 +46,16 @@ def index():
     top_10_mes = df.iloc[:,4:].sum().sort_values(ascending=False)[0:10]
     top_10_mes_names = list(top_10_mes.index)
 
+    bottom_10_mes = df.iloc[:,5:].sum().sort_values()[0:10]
+    bottom_10_mes_names = list(bottom_10_mes.index)
+
     mes_categories = df.columns[4:-1]
     mes_categories_count = df[mes_categories].sum()
+
+    distr_class_1 = df.drop(['id', 'message', 'original', 'genre'], axis = 1).sum()/len(df)
+    distr_class_1.sort_values(ascending = False)
+    distr_class_0 = 1 - distr_class_1
+    distr_class_names = list(distr_class_1.index)
 
     # create visuals
     # TODO: Below is an example - modify to create your own visuals
@@ -70,25 +78,32 @@ def index():
                 }
             }
         },
-
-         {
-           'data': [
+                {
+            'data': [
                 Bar(
-                    x=mes_categories,
-                    y=mes_categories_count,
+                    x=distr_class_names,
+                    y=distr_class_1,
+                    name = 'Class = 1',
                     marker=dict(color='green')
+                ),
+                Bar(
+                    x=distr_class_names,
+                    y=distr_class_0,
+                    name = 'Class = 0',
+                    marker = dict(color = 'rgb(210, 220, 240)')
                 )
             ],
 
             'layout': {
-                'title': 'Distribution of Message Categories',
+                'title': 'Distribution of Message Categories within classes',
                 'yaxis': {
-                    'title': "Count"
+                    'title': "Distribution"
                 },
                 'xaxis': {
                     'title': "Category",
-                    'tickangle':"-50"
-                }
+                    'tickangle': "-45"
+                },
+                'barmode' : 'stack'
             }
         },
 
@@ -97,21 +112,42 @@ def index():
                 Bar(
                     x=top_10_mes_names,
                     y=top_10_mes,
-                    marker=dict(color='red')
+                    marker=dict(color='crimson')
                 )
             ],
 
             'layout': {
-                'title': 'Top Ten Disaster Messages Categories',
+                'title': 'Top Ten more frequent Disaster Messages Categories',
                 'yaxis': {
                     'title': "Count"
                 },
                 'xaxis': {
-                    'title': "Category"
+                    'title': "Category",
+                    'tickangle':"-45"
+                }
+            }
+        },
+
+        {
+            'data': [
+                Bar(
+                    x=bottom_10_mes_names,
+                    y=bottom_10_mes,
+                    marker=dict(color='rgb(0, 134, 149)')
+                )
+            ],
+
+            'layout': {
+                'title': 'Ten less frequent Disaster Messages Categories',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Category",
+                    'tickangle':"-50"
                 }
             }
         }
-
     ]
 
     # encode plotly graphs in JSON
