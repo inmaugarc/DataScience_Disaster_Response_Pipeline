@@ -42,7 +42,7 @@ Here's the file structure of the project:
 There are three main components for this project:
 1. ETL Pipeline
 
-In a Python script: process_data.py, there is a data cleaning pipeline that:
+The Python script: process_data.py, contains a data cleaning pipeline that:
 
     Loads the messages and categories datasets
     Merges the two datasets
@@ -51,7 +51,7 @@ In a Python script: process_data.py, there is a data cleaning pipeline that:
 
 2. ML Pipeline
 
-In a Python script: train_classifier.py, there is a machine learning pipeline that:
+The Python script: train_classifier.py, contains a machine learning pipeline that:
 
     Loads data from the SQLite database
     Splits the dataset into training and test sets
@@ -68,6 +68,10 @@ In a Python script: train_classifier.py, there is a machine learning pipeline th
 
 ## Results<a name="results"></a>
 The main findings are explained on the Notebooks files that are included in the corresponding folder.
+I have included a minimal Exploratory Data Analysis:
+![Alt text](./img/eda.png?raw=true "Overview")
+![Alt text](./img/eda2.png?raw=true "Pearson")
+
 
 ## Licensing, Authors, Acknowledgements<a name="licensing"></a>
 
