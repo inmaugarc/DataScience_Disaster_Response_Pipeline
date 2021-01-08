@@ -31,7 +31,7 @@ In this project I have built a machine learning pipeline to categorize emergency
 I have applied my skills to analyze disaster data from Figure Eight to build a model for an API that classifies disaster messages.
 From a data set containing real messages that were sent during disaster events, I have created a machine learning pipeline to categorize these events so that you can send the messages to an appropriate disaster relief agency.
 
-This project also includes a web app where an emergency worker can input a new message and get classification results in several categories. The web app will also display visualizations of the data. So this project cover software skills, including the ability to create basic data pipelines and write clean, organized code.
+This project also includes a web app where an emergency worker can input a new message and get classification results in several categories. The web app will also displays visualizations of the data. So this project covers software skills, including the ability to create basic data pipelines and write clean, organized code.
 
 Below are a few screenshots of the web app.
 
@@ -62,7 +62,7 @@ In a Python script: train_classifier.py, there is a machine learning pipeline th
 
 3. Flask Web App
 
-    There is a flask web app to show some nice visualization using Plotly.
+    There is a flask web app where you can enter a message and it predicts its category. Also it shows some nice visualization using Plotly.
 
     ![Alt text](./img/Graph3.png?raw=true "Nice Visualizations")
 
