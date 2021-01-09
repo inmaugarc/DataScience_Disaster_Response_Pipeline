@@ -41,6 +41,7 @@ Here's the file structure of the project:
 ![Alt text](./img/tree_Disaster.png?raw=true "Structure Project")
 The main components for this project are:
 1. ETL Pipeline
+
 In the Python scrip: process_data.py, I've developed a data cleaning pipeline that:
 
     * Loads the source datasets
