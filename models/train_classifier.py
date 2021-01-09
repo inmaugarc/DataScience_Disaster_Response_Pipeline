@@ -133,7 +133,7 @@ def display_results(y, y_test, y_pred):
     category_names = list(y.columns)
 
     for i in range(len(category_names)):
-        print("Output Category:", category_names[i],"\n", classification_report(y_test.iloc[:, i].values, y_pred[:, i]))
+        print("Category:", category_names[i],"\n", classification_report(y_test.iloc[:, i].values, y_pred[:, i]))
         print('Accuracy of %25s: %.2f' %(category_names[i], accuracy_score(y_test.iloc[:, i].values, y_pred[:,i])))
 
 def evaluate_model(model, y, x_test, y_test):
@@ -179,7 +179,10 @@ def main():
         database_filepath, model_filepath = sys.argv[1:]
         print('Loading data...\n    DATABASE: {}'.format(database_filepath))
 
+        # load data from database file
         X,y = load_data(database_filepath)
+
+        # split data into train and test
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
         print('Building model...')
@@ -199,7 +202,7 @@ def main():
     else:
         print('Please provide the filepath of the disaster messages database '\
               'as the first argument and the filepath of the pickle file to '\
-              'save the model to as the second argument. \n\nExample: python '\
+              'save the model as the second argument. \n\nExample: python '\
               'train_classifier.py data/DisasterResponse.db models/classifier.pkl')
 
 
