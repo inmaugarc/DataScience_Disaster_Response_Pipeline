@@ -110,6 +110,33 @@ def build_model():
     base = Pipeline([
         ('vect', CountVectorizer(tokenizer=tokenize)),
         ('tfidf', TfidfTransformer()),
+        ('clf', MultiOutputClassifier(
+            RandomForestClassifier(n_estimators=2,
+                                   max_features=None)))
+        ])
+
+    parameters = {'clf__estimator__n_estimators': [10, 20]}
+
+    model = GridSearchCV(base, param_grid=parameters, n_jobs=-1, cv=2, verbose=10)
+
+    return (model)
+
+def old_build_model():
+    """
+    Build model procedure:
+
+    This procedure builds a Machine Learning model based on a sklearn pipeline
+    and using tfidf, random forest, and gridsearch
+
+    Args: no args
+
+    Returns:
+    model (Scikit Pipeline Object and RandomForest Classifier) : ML Model
+    """
+
+    base = Pipeline([
+        ('vect', CountVectorizer(tokenizer=tokenize)),
+        ('tfidf', TfidfTransformer()),
         ('clf', MultiOutputClassifier(RandomForestClassifier()))
         ])
 
