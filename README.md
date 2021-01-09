@@ -39,35 +39,35 @@ Below are a few screenshots of the web app.
 ## File Descriptions <a name="files"></a>
 Here's the file structure of the project:
 ![Alt text](./img/tree_Disaster.png?raw=true "Structure Project")
-There are three main components for this project:
+The main components for this project are:
 1. ETL Pipeline
+In the Python scrip: process_data.py, I've developed a data cleaning pipeline that:
 
-The Python script: process_data.py, contains a data cleaning pipeline that:
-
-    Loads the messages and categories datasets
-    Merges the two datasets
-    Cleans the data
-    Stores it in a SQLite database
+    * Loads the source datasets
+    * Merges them with an inner join through the id field
+    * Tranforms them (convert categories into 0/1 numbers, drop some innecessary fields, concat fields,etc..)
+    * Cleans all data (remove duplicates)
+    * Saves it as a SQLite database with the "to_sql" method from the SQLAlchemy library
 
 2. ML Pipeline
 
 The Python script: train_classifier.py, contains a machine learning pipeline that:
 
-    Loads data from the SQLite database
-    Splits the dataset into training and test sets
-    Builds a text processing and machine learning pipeline
-    Trains and tunes a model using GridSearchCV
-    Outputs results on the test set
-    Exports the final model as a pickle file
+   * Loads data from the database file previously prepared with the previous step
+   * Split the data into a training set and a test set
+   * creates a ML pipeline that uses NLTK, scikit-learn's Pipeline and GridSearchCV to output a final model that uses the message column to predict classifications for 36 categories (multi-output classification)
+   * Finally that final model is exported to a pickle file
+
 
 3. Flask Web App
 
-    There is a flask web app where you can enter a message and it predicts its category. Also it shows some nice visualization using Plotly.
+    There is a flask web app that implements the developed ML model on a web page: you can enter a message and it predicts the category of the message.
+    Also it shows some nice visualization using Plotly.
 
     ![Alt text](./img/Graph3.png?raw=true "Nice Visualizations")
 
 ## Results<a name="results"></a>
-The main findings are explained on the Notebooks files that are included in the corresponding folder.
+The main findings are explained on the Notebooks files that are included in the corresponding folder on this github repo.
 I have included a minimal Exploratory Data Analysis:
 ![Alt text](./img/eda.png?raw=true "Overview")
 ![Alt text](./img/eda2.png?raw=true "Pearson")
