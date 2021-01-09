@@ -44,8 +44,8 @@ The main components for this project are:
 
 In the Python scrip: process_data.py, I've developed a data cleaning pipeline that:
 
-    Loads the source datasets
-    Merges them with an inner join through the id field
+    * Loads the source datasets
+    * Merges them with an inner join through the id field
     * Tranforms them (convert categories into 0/1 numbers, drop some innecessary fields, concat fields,etc..)
     * Cleans all data (remove duplicates)
     * Saves it as a SQLite database with the "to_sql" method from the SQLAlchemy library
@@ -55,10 +55,10 @@ In the Python scrip: process_data.py, I've developed a data cleaning pipeline th
 
 The Python script: train_classifier.py, contains a machine learning pipeline that:
 
-   * Loads data from the database file previously prepared with the previous step
-   * Split the data into a training set and a test set
-   * creates a ML pipeline that uses NLTK, scikit-learn's Pipeline and GridSearchCV to output a final model that uses the message column to predict classifications for 36 categories (multi-output classification)
-   * Finally that final model is exported to a pickle file
+    * Loads data from the database file previously prepared with the previous step
+    * Split the data into a training set and a test set
+    * Creates a ML pipeline that uses NLTK, scikit-learn's Pipeline and GridSearchCV to output a final model that uses the message column to predict classifications for 36 categories (multi-output classification)
+    * Finally that final model is exported to a pickle file
 
 
 3. Flask Web App
