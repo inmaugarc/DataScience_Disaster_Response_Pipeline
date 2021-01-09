@@ -44,8 +44,8 @@ The main components for this project are:
 
 In the Python scrip: process_data.py, I've developed a data cleaning pipeline that:
 
-    * Loads the source datasets
-    * Merges them with an inner join through the id field
+    Loads the source datasets
+    Merges them with an inner join through the id field
     * Tranforms them (convert categories into 0/1 numbers, drop some innecessary fields, concat fields,etc..)
     * Cleans all data (remove duplicates)
     * Saves it as a SQLite database with the "to_sql" method from the SQLAlchemy library
