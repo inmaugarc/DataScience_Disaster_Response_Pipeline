@@ -50,6 +50,7 @@ In the Python scrip: process_data.py, I've developed a data cleaning pipeline th
     * Cleans all data (remove duplicates)
     * Saves it as a SQLite database with the "to_sql" method from the SQLAlchemy library
 
+
 2. ML Pipeline
 
 The Python script: train_classifier.py, contains a machine learning pipeline that:
