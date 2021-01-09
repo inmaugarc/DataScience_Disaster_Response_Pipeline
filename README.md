@@ -73,7 +73,8 @@ The main findings are explained on the Notebooks files that are included in the 
 I have included a minimal Exploratory Data Analysis:
 ![Alt text](./img/eda.png?raw=true "Overview")
 ![Alt text](./img/eda2.png?raw=true "Pearson")
-
+Some snapshots of the data processing execution:
+![Alt text](./img/process_data.png?raw=true "Overview")
 
 ## Licensing, Authors, Acknowledgements<a name="licensing"></a>
 
