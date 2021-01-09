@@ -59,6 +59,11 @@ def load_data(db_file):
     table_name = os.path.basename(db_file).replace(".db","")
     # load the info from the sql table into a pandas file
     df = pd.read_sql_table(table_name,engine)
+    # we drop some fields that we don't need
+    df = df[df.related !=2]
+    # drop the column child_alone as it does not help
+    df = df.drop(["child_alone"],axis=1)
+
     # We separate the features from the variables we are going to predict
     X = df ['message']
     y = df.drop(columns = ['id', 'message', 'original', 'genre'])
