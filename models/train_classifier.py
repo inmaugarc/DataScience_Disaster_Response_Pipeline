@@ -180,7 +180,7 @@ def main():
         print('Loading data...\n    DATABASE: {}'.format(database_filepath))
 
         # load data from database file
-        X,y = load_data(database_filepath)
+        X, y = load_data(database_filepath)
 
         # split data into train and test
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
