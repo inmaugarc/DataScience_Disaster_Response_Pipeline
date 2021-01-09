@@ -14,24 +14,24 @@ A Udacity Data Scientist Nanodegree Project
 6. [References](#references)
 
 ## Installation <a name="installation"></a>
-1. Run the following commands in the project's root directory to set up your database and model.
+1. Run the following commands from the project's root directory to set up your database and model.
 
     - To run ETL pipeline that cleans data and stores in database
         `python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db`
     - To run ML pipeline that trains classifier and saves
         `python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl`
 
-2. Run the following command in the app's directory to run your web app.
+2. Run the following command from the app's directory to run the web app.
     `python run.py`
 
 3. Find the workspace environmental variables with env | grep WORK, and you can open a new browser window and go to the address: http://WORKSPACESPACEID-3001.WORKSPACEDOMAIN replacing WORKSPACEID and WORKSPACEDOMAIN with your values.
 
 ## Project Motivation<a name="motivation"></a>
 In this project I have built a machine learning pipeline to categorize emergency messages based on the needs communicated by the sender.
-I have applied my skills to analyze disaster data from Figure Eight to build a model for an API that classifies disaster messages.
+I have analyzed disaster data from Figure Eight to build a model for an API that classifies disaster messages.
 From a data set containing real messages that were sent during disaster events, I have created a machine learning pipeline to categorize these events so that you can send the messages to an appropriate disaster relief agency.
 
-This project also includes a web app where an emergency worker can input a new message and get classification results in several categories. The web app will also displays visualizations of the data. So this project covers software skills, including the ability to create basic data pipelines and write clean, organized code.
+This project also includes a web app where an emergency worker can enter a message and get the classification results in several categories. The web app will also displays some nice visualizations of the data. So this project covers software skills, including the ability to create basic data pipelines and write clean, organized code.
 
 Below are a few screenshots of the web app.
 
